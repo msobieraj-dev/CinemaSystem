@@ -4,4 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CinemaSystem.Application\CinemaSystem.Application.csproj" />
+    <ProjectReference Include="..\CinemaSystem.Domain\CinemaSystem.Domain.csproj" />
+    <ProjectReference Include="..\CinemaSystem.Infrastructure\CinemaSystem.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
