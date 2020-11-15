@@ -1,14 +1,51 @@
 namespace CinemaSystem.UnitTests
 {
+    using CinemaSystem.Domain.Entities;
+    using CinemaSystem.Domain.Repositories;
     using FluentAssertions;
+    using Moq;
     using System;
+    using System.Collections.Generic;
     using Xunit;
 
     public class TicketTests
     {
+
+        List<Cinema> GetCinemas()
+        {
+            return new List<Cinema>
+            {
+                new Cinema
+                {
+                    Name = "Helo",
+                    Rooms = new List<Room>
+                    {
+                        new Room
+                        {
+                            Name = "Sala1",
+                            Rows = new List<Row>
+                            {
+                                new Row
+                                {
+                                    Number = 1,
+                                    Seats = new List<Seat>
+                                    {
+                                        new Seat { Number = 1 },
+                                        new Seat { Number = 2 },
+                                        new Seat { Number = 3 }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+        }
+
         [Fact]
         public void BookTicket_BeforeDisplay_ReturnsTicket()
         {
+            
             var result = "code";
 
             result.Should().NotBeNull();
@@ -33,6 +70,11 @@ namespace CinemaSystem.UnitTests
         [Fact]
         public void BookTickets_NearSeats_ReturnsTicket()
         {
+            var cinemaMock = new Mock<ICinemaRepository>();
+            cinemaMock.Setup(x => x.GetCinemaStructure()).Returns(GetCinemas);
+
+            //var serv = new CheckTicket(cinemaMock.Object);
+
             var result = "code";
 
             result.Should().NotBeNull();
